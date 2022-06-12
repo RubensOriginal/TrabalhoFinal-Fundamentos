@@ -23,4 +23,28 @@ public class ParkingSpot
     public boolean getVacancy() {
         return vacancy;
     }
+    
+    public void setCarPlate(String plate){
+        this.carPlate = plate;
+    }
+    
+    public String getCarPlate() {
+        return carPlate;
+    }
+    
+    public void setCarColour(String colour) {
+        this.carColour = colour;
+    }
+    
+    public String getCarColour() {
+        return carColour;
+    }
+    
+    public void setCarDriver(String name) {
+        this.carDriver = name;
+    }
+    
+    public String getCarDriver() {
+        return carDriver;
+    }
 }
