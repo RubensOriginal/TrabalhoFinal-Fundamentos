@@ -9,9 +9,9 @@
   <p align="center">
 	Projeto que tem como objetivo administrar um estacionamento.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Reporte uma Falha</a>
+    <a href="https://github.com/RubensOriginal/TrabalhoFinalFundamentos/issues">Reporte uma Falha</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Solicite uma Feature</a>
+    <a href="https://github.com/RubensOriginal/TrabalhoFinalFundamentos/issues">Solicite uma Feature</a>
   </p>
 </div>
 
@@ -42,9 +42,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Sobre o Projeto
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 
 O projeto tem como objetivo administrar um estacionamento com vagas em multiplas fileiras. Essas fileiras são indicadas por letras de A a J. Cada fileira possui 8 vagas, exceto a H, I e J, que possuem 11 vagas cada uma. Exemplos de vagas são A1, B5, F8 e J10. O sistema armazena os dados das vagas indicando se ela está ou não ocupada e os dados do veículo que está na vaga, como cor predominante, placa e motorista.
 
