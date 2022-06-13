@@ -2,31 +2,32 @@ import java.util.Random;
 
 public class DataManager
 {
+    private final static int LETTERS = 26;
+    private final static Random random = new Random();
+    
+    
     public static String carPlateGenerator() {
-        Random random = new Random();
-        
-        char firstChar = (char)(random.nextInt(26) + 65);
-        char secondChar = (char)(random.nextInt(26) + 65);
-        char thirdChar = (char)(random.nextInt(26) + 65);
+               
+        char firstChar = (char)(random.nextInt(LETTERS) + 'A');
+        char secondChar = (char)(random.nextInt(LETTERS) + 'A');
+        char thirdChar = (char)(random.nextInt(LETTERS) + 'A');
         
         int firstNumber = random.nextInt(10);
         int secondNumber = random.nextInt(10);
         int thirdNumber = random.nextInt(10);
         int forthNumber = random.nextInt(10);
         
-        return "" + firstChar + secondChar + thirdChar + "-" + firstNumber + secondNumber + thirdNumber + forthNumber;
+        return "" + firstChar + secondChar + thirdChar + "-" + firstNumber + secondNumber + thirdNumber + forthNumber; // String Builder
     }
     
     public static String carColourGenerator() {
-        Random random = new Random();
-        
+           
         String[] carColours = {"Branco", "Preto", "Prata", "Cinza", "Azul", "Vermelho", "Laranja", "Marrom", "Dourado", "Creme"};
         
         return carColours[random.nextInt(carColours.length)];
     }
     
     public static String carDriverGenerator() {
-        Random random = new Random();
         
         String[] firstName = {
             "Daniel", "Ari", "Salomao", "Nelio", "Ayrton", "Lilia", "Milton", "Luis", "Eric", "Gaia", "Clarinha", "Melissa", "Oscar", "Samara", "Mafalda", "Paloma", "Amy", "Virginia",
