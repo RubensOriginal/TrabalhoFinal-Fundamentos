@@ -25,21 +25,37 @@ public class App {
             System.out.print("Digite a opção desejada: ");
             option = in.nextLine();
             
+            boolean hasAnError = false;
+            
             //Fazer metodos para cada CASE.
             switch (option) {
                 case "1":
                     
                     break;
                 case "2":
-                    System.out.print("Digite a vaga que você deseja ocupar: ");
-                    spot = in.nextLine().toUpperCase().replace(" ","");
-
-                    parking.takeAVacancy(parking.getSpotByName(spot));
-
-                    System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
+                    do {
+                        System.out.print("Digite a vaga que você deseja ocupar: ");
+                        spot = in.nextLine().toUpperCase().replace(" ","");
+                        
+                        if (spot.length() == 2) {
+                            if ((spot.charAt(0) >= 'A') &&
+                                (spot.charAt(0) <= 'Z') &&
+                                (spot.charAt(1) >= '1') &&
+                                (spot.charAt(0) <= '9')) {
+                                parking.takeAVacancy(parking.getSpotByName(spot));
+                                System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
+                            } else {
+                                hasAnError = true;
+                                System.out.printf("Ocorreu um erro. A vaga %s não respeita o padrão letra número. Ex: A1.\n", spot);
+                            }
+                        } else {
+                            hasAnError = true;
+                            System.out.printf("Ocorreu um erro. A vaga %s não respeita o padrão letra número. Ex: A1.\n", spot);
+                        }
+                    } while (!hasAnError);
                     break;
                 case "3":
-                        System.out.print("Digite a vaga que você deseja liberar: ");
+                    System.out.print("Digite a vaga que você deseja liberar: ");
                     spot = in.nextLine().toUpperCase().replace(" ","");
 
                     parking.releaseAVacancy(spot);
