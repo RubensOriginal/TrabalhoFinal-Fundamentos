@@ -70,31 +70,27 @@ public class Parking {
             }
         }
     }
-    public String takeAVacancy(String spot) {
-       
-        ParkingSpot requestedSpot = getSpotByName(spot);
+    public void takeAVacancy(ParkingSpot spot) {
 
-        if(!requestedSpot.getVacancy()) {
+        if(!spot.getVacancy()) {
             System.out.printf("Erro, a vaga %s está ocupada, por favor escolha outra de sua preferência.", spot);
         } else{
-            System.out.println("Por favor digite as informações abaixo paraa que possamos colocar seus dados na vaga selecionada");
+            System.out.println("Por favor digite as informações abaixo para que possamos colocar seus dados na vaga selecionada");
             
             System.out.println("1- Por favor, digitar seu nome completo (Ex.: Erik Adamastor Leoncio):");
-            String name = in.nextLine();
+            String name = in.nextLine().trim();
             
-            System.out.println("2- Agora, digite a placa do seu carro");
-            String plate = in.nextLine();
+            System.out.println("2- Agora, digite a placa do seu carro (Ex.: IOS-2456):");
+            String plate = in.nextLine().trim().toUpperCase();
 
             System.out.println("3- Por ultimo, mas nao menos importante, digite a cor do seu carro:");
-            String colour = in.nextLine();
+            String colour = in.nextLine().trim();
 
-            requestedSpot.setVacancy(false);
-            requestedSpot.setCarDriver(name);
-            requestedSpot.setCarPlate(plate);
-            requestedSpot.setCarColour(colour);
+            spot.setVacancy(false);
+            spot.setCarDriver(name);
+            spot.setCarPlate(plate);
+            spot.setCarColour(colour);
         }
-
-        return spot;
     }
 
     public String releaseAVacancy(String spot)
@@ -106,6 +102,35 @@ public class Parking {
         
         return spot;
     }
-    public String firstFreeSpot(String spot)
-        while()
+
+    public String firstFreeSpot() {
+        boolean freeVacancy = false;
+        ParkingSpot spot = parkingSpot[0][0];
+
+        int column = 0;
+        int line = 0;
+
+        while (!freeVacancy && (column <= 9 && line <= 10)) {
+            spot = parkingSpot[column][line];
+            
+            if (spot.getVacancy()) {
+                freeVacancy = true;
+                takeAVacancy(spot);
+            }
+
+            if ((column < 8 && line == 7) || (column >= 8 && line == 10)) {
+                column++;
+                line = 0;
+            } else {
+                line++;
+            }
+        }
+        
+        if (freeVacancy) {
+            return spot.getSpotName();
+        } else {
+            return "PARKING_FULL";
+        }
+    }
 }
+    

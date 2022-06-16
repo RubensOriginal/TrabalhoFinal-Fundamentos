@@ -34,7 +34,7 @@ public class App {
                     System.out.print("Digite a vaga que você deseja ocupar: ");
                     spot = in.nextLine().toUpperCase().replace(" ","");
 
-                    parking.takeAVacancy(spot);
+                    parking.takeAVacancy(parking.getSpotByName(spot));
 
                     System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
                     break;
@@ -46,6 +46,12 @@ public class App {
                     System.out.printf("A vaga %s foi liberada com sucesso!\n ", spot);
                     break;
                 case "4":
+                    spot = parking.firstFreeSpot();
+                    if (spot.equals("PARKING_FULL")) {
+                        System.out.println("O estacionamento está cheio. Primeiro, libere uma vaga para que seja possível achar uma vaga livre.");
+                    } else {
+                        System.out.printf("A vaga %s é a primeira vaga livre no estacionamento.\n", spot);
+                    }
 
                     break;
                 case "5":
