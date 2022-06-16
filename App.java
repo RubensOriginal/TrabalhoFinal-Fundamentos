@@ -30,6 +30,12 @@ public class App {
                     
                     break;
                 case "2":
+                    System.out.print("Digite a vaga que você deseja ocupar: ");
+                    String spot = in.nextLine();
+
+                    parking.takeAVacancy(spot);
+
+                    System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
                     break;
                 case "3":
                 

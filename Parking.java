@@ -1,10 +1,11 @@
 import java.util.Random;
-
+import java.util.Scanner;
 public class Parking {
 
     private ParkingSpot[][] parkingSpot;
 
     private int numberOfParkingSpot = 0;
+    private Scanner in = new Scanner (System.in);
 
     // Create Parking
     public Parking() {
@@ -27,6 +28,14 @@ public class Parking {
 
             numberOfParkingSpot += spotCount;
         }
+    }
+
+    public ParkingSpot getSpotByName(String spotName) {
+
+        int column = (int)(spotName.charAt(0)) - 'A';
+        int line = ((int) spotName.charAt(1)) - '1';
+
+        return parkingSpot[column][line];
     }
 
     public void fillParking() {
@@ -61,5 +70,30 @@ public class Parking {
             }
         }
     }
+    public String takeAVacancy(String spot) {
+       
+        ParkingSpot requestedSpot = getSpotByName(spot);
 
+        if(!requestedSpot.getVacancy()) {
+            System.out.printf("Erro, a vaga %s está ocupada, por favor escolha outra de sua preferência.", spot);
+        } else{
+            System.out.println("Por favor digite as informações abaixo paraa que possamos colocar seus dados na vaga selecionada");
+            
+            System.out.println("1- Por favor, digitar seu nome completo (Ex.: Erik Adamastor Leoncio):");
+            String name = in.nextLine();
+            
+            System.out.println("2- Agora, digite a placa do seu carro");
+            String plate = in.nextLine();
+
+            System.out.println("3- Por ultimo, mas nao menos importante, digite a cor do seu carro:");
+            String colour = in.nextLine();
+
+            requestedSpot.setVacancy(false);
+            requestedSpot.setCarDriver(name);
+            requestedSpot.setCarPlate(plate);
+            requestedSpot.setCarColour(colour);
+        }
+
+        return spot;
+    }
 }
