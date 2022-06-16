@@ -8,6 +8,7 @@ public class App {
 
     public static void consoleController() {
         String option = "0";
+        String spot = "";
         do {
             System.out.println("--------------------------------------");
             System.out.println("Escolha uma das opções a seguir:\n");
@@ -31,14 +32,18 @@ public class App {
                     break;
                 case "2":
                     System.out.print("Digite a vaga que você deseja ocupar: ");
-                    String spot = in.nextLine();
+                    spot = in.nextLine().toUpperCase().replace(" ","");
 
                     parking.takeAVacancy(spot);
 
                     System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
                     break;
                 case "3":
-                
+                        System.out.print("Digite a vaga que você deseja liberar: ");
+                    spot = in.nextLine().toUpperCase().replace(" ","");
+
+                    parking.releaseAVacancy(spot);
+                    System.out.printf("A vaga %s foi liberada com sucesso!\n ", spot);
                     break;
                 case "4":
 

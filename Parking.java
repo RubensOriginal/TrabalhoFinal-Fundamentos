@@ -96,4 +96,16 @@ public class Parking {
 
         return spot;
     }
+
+    public String releaseAVacancy(String spot)
+    {
+        ParkingSpot requestedSpot = getSpotByName(spot);
+        requestedSpot.setCarDriver("");
+        requestedSpot.setCarPlate("");
+        requestedSpot.setCarColour("");
+        
+        return spot;
+    }
+    public String firstFreeSpot(String spot)
+        while()
 }
