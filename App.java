@@ -41,7 +41,7 @@ public class App {
                             if ((spot.charAt(0) >= 'A') &&
                                 (spot.charAt(0) <= 'Z') &&
                                 (spot.charAt(1) >= '1') &&
-                                (spot.charAt(0) <= '9')) {
+                                (spot.charAt(1) <= '9')) {
                                 parking.takeAVacancy(parking.getSpotByName(spot));
                                 System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
                             } else {
@@ -77,13 +77,13 @@ public class App {
 
                     break;
                 case "0":
-                    System.out.println("Obrigado pela paciência, tenhaa um bom dia! ");
+                    System.out.println("Obrigado pela preferência, tenha um bom dia! ");
                     break;
                 default:
                     System.out.println("Ocorreu um erro. A opção escolhida não existe!");
                     break;
             }
-        } while (option != "0");
+        } while (!option.equals("0"));
     }
 
     public static void main(String[] args) {

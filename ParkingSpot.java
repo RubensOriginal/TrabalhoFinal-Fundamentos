@@ -47,4 +47,24 @@ public class ParkingSpot
     public String getCarDriver() {
         return carDriver;
     }
+    
+    public ParkingSpot takeParkingSpot (String carDriver, String carColour, String carPlate) {
+        if (this.getVacancy()) {
+            setCarColour(carColour);
+            setCarDriver(carDriver);
+            setCarPlate(carPlate);
+            setVacancy(false);
+        }
+        return this;
+    }
+    
+    public ParkingSpot releaseParkingSpot () {
+        if (!this.getVacancy()) {
+            setCarColour("");
+            setCarDriver("");
+            setCarPlate("");
+            setVacancy(true);            
+        }
+        return this;
+    }
 }

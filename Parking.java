@@ -29,15 +29,7 @@ public class Parking {
             numberOfParkingSpot += spotCount;
         }
     }
-
-    public ParkingSpot getSpotByName(String spotName) {
-
-        int column = (int)(spotName.charAt(0)) - 'A';
-        int line = ((int) spotName.charAt(1)) - '1';
-
-        return parkingSpot[column][line];
-    }
-
+    
     public void fillParking() {
         Random random = new Random();
 
@@ -70,6 +62,27 @@ public class Parking {
             }
         }
     }
+
+    public ParkingSpot getSpotByName(String spotName) {
+
+        int column = (int)(spotName.charAt(0)) - 'A';
+        int line = ((int) spotName.charAt(1)) - '1';
+
+        return parkingSpot[column][line];
+    }
+    
+    public ParkingSpot getSpotByPlate(String carPlate) {
+        for (int i = 0; i < parkingSpot.length; i++) {
+            for (int j = 0; j < parkingSpot[i].length; j++) {
+                if (parkingSpot[i][j].getCarPlate().equals(carPlate)) {
+                    return parkingSpot[i][j];            
+                }
+            }
+        }
+        return new ParkingSpot("00");
+    }
+
+    
     public void takeAVacancy(ParkingSpot spot) {
 
         if(!spot.getVacancy()) {
@@ -78,18 +91,15 @@ public class Parking {
             System.out.println("Por favor digite as informações abaixo para que possamos colocar seus dados na vaga selecionada");
             
             System.out.println("1- Por favor, digitar seu nome completo (Ex.: Erik Adamastor Leoncio):");
-            String name = in.nextLine().trim();
+            String driverName = in.nextLine().trim();
             
             System.out.println("2- Agora, digite a placa do seu carro (Ex.: IOS-2456):");
-            String plate = in.nextLine().trim().toUpperCase();
+            String carPlate = in.nextLine().trim().toUpperCase();
 
             System.out.println("3- Por ultimo, mas nao menos importante, digite a cor do seu carro:");
-            String colour = in.nextLine().trim();
+            String carColour = in.nextLine().trim();
 
-            spot.setVacancy(false);
-            spot.setCarDriver(name);
-            spot.setCarPlate(plate);
-            spot.setCarColour(colour);
+            spot.takeParkingSpot(driverName, carPlate, carColour);
         }
     }
 
