@@ -41,7 +41,7 @@ public class ParkingTest
     }
 
     @Test
-    public void carA()
+    public void parkACarInParking()
     {
         Parking parking = new Parking();
         ParkingSpot spot = parking.getSpotByName("A1");
@@ -61,7 +61,7 @@ public class ParkingTest
     }
     
     @Test
-    public void carB()
+    public void parkACarInParkingAndReleaseIt()
     {
         Parking parking = new Parking();
         ParkingSpot spot = parking.getSpotByName("B2");
@@ -82,16 +82,15 @@ public class ParkingTest
         assertEquals("", spot.getCarDriver());
     }
     
-    /*
     @Test
-    public void carC()
+    public void parkACarInParkingAfterOtherCarsAndReleaseIt()
     {
         Parking parking = new Parking();
         for (int i = 0; i < 5; i++) {
             parking.getSpotByName("A" + (i + 1)).takeParkingSpot(DataManager.carDriverGenerator(), DataManager.carColourGenerator(), DataManager.carPlateGenerator());
         }
         
-        // ParkingSpot spot = parking;
+        ParkingSpot spot = parking.getSpotByName("A5");
         if (!spot.getVacancy()) {
             spot.releaseParkingSpot();
         }
@@ -108,6 +107,39 @@ public class ParkingTest
         assertEquals("", spot.getCarColour());
         assertEquals("", spot.getCarDriver());
     }
-    */
+    
+    @Test
+    public void parkACarInAParkWithFewFreeSpotAndDiscoverItSpotUsingCarPlate() {
+        Parking parking = new Parking();
+        parking.fillParking();
+        
+        ParkingSpot spot = parking.getFirstFreeParkingSpot();
+        
+        String carPlate = DataManager.carPlateGenerator();
+        
+        spot.takeParkingSpot(DataManager.carDriverGenerator(), DataManager.carColourGenerator(), carPlate);
+        
+        ParkingSpot spotFoundUsingCarPlate = parking.getSpotByPlate(carPlate);
+        
+        assertEquals(spotFoundUsingCarPlate, spot);
+        
+    }
+    
+    @Test
+    public void parkACarInAParkWithFewFreeSpotAndDiscoverItSpotUsingCarDriver() {
+        Parking parking = new Parking();
+        parking.fillParking();
+        
+        ParkingSpot spot = parking.getFirstFreeParkingSpot();
+        
+        String carDriver = DataManager.carDriverGenerator();
+        
+        spot.takeParkingSpot(carDriver, DataManager.carColourGenerator(), DataManager.carPlateGenerator());
+        
+        ParkingSpot spotFoundUsingDriverName = parking.getSpotByDriverName(carDriver);
+        
+        assertEquals(spotFoundUsingDriverName, spot);
+        
+    }
 }
 
