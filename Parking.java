@@ -68,7 +68,14 @@ public class Parking {
     public ParkingSpot getSpotByName(String spotName) {
 
         int column = (int)(spotName.charAt(0)) - 'A';
-        int line = ((int) spotName.charAt(1)) - '1';
+        int line = 0;
+
+        if (spotName.length() == 2) {
+            line = ((int) spotName.charAt(1)) - '1';
+        } else {
+            line = ((int)spotName.charAt(1)) * 10 + ((int) spotName.charAt(2)) - 1 ;
+        }
+        
 
         return parkingSpot[column][line];
     }

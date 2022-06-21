@@ -37,17 +37,9 @@ public class App {
                         System.out.print("Digite a vaga que você deseja ocupar: ");
                         spot = in.nextLine().toUpperCase().replace(" ","");
                         
-                        if (spot.length() == 2) {
-                            if ((spot.charAt(0) >= 'A') &&
-                                (spot.charAt(0) <= 'Z') &&
-                                (spot.charAt(1) >= '1') &&
-                                (spot.charAt(1) <= '9')) {
-                                parking.takeAVacancy(parking.getSpotByName(spot));
-                                System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
-                            } else {
-                                hasAnError = true;
-                                System.out.printf("Ocorreu um erro. A vaga %s não respeita o padrão letra número. Ex: A1.\n", spot);
-                            }
+                        if (spot.length() == 2 || spot.length() == 3) {
+                            parking.takeAVacancy(parking.getSpotByName(spot));
+                            System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot);
                         } else {
                             hasAnError = true;
                             System.out.printf("Ocorreu um erro. A vaga %s não respeita o padrão letra número. Ex: A1.\n", spot);
