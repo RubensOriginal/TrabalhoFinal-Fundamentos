@@ -30,6 +30,7 @@ public class Parking {
         }
     }
     
+    // Fill 70% of Parking with random cars. 
     public void fillParking() {
         Random random = new Random();
 
@@ -62,7 +63,8 @@ public class Parking {
             }
         }
     }
-
+    
+    // Find the parkingSpot using chars from spotName
     public ParkingSpot getSpotByName(String spotName) {
 
         int column = (int)(spotName.charAt(0)) - 'A';
@@ -71,10 +73,37 @@ public class Parking {
         return parkingSpot[column][line];
     }
     
+    // Find the parkingSpot using carPlate provided in method
     public ParkingSpot getSpotByPlate(String carPlate) {
         for (int i = 0; i < parkingSpot.length; i++) {
             for (int j = 0; j < parkingSpot[i].length; j++) {
                 if (parkingSpot[i][j].getCarPlate().equals(carPlate)) {
+                    return parkingSpot[i][j];            
+                }
+            }
+        }
+        
+        return new ParkingSpot("00");
+    }
+    
+    // Find the parkingSpot using driverName provided in method
+    public ParkingSpot getSpotByDriverName(String driverName) {
+        for (int i = 0; i < parkingSpot.length; i++) {
+            for (int j = 0; j < parkingSpot[i].length; j++) {
+                if (parkingSpot[i][j].getCarDriver().equals(driverName)) {
+                    return parkingSpot[i][j];            
+                }
+            }
+        }
+            
+        return new ParkingSpot("00");
+    }
+    
+    // Find first free 
+    public ParkingSpot getFirstFreeParkingSpot() {
+        for (int i = 0; i < parkingSpot.length; i++) {
+            for (int j = 0; j < parkingSpot[i].length; j++) {
+                if (parkingSpot[i][j].getVacancy()) {
                     return parkingSpot[i][j];            
                 }
             }
