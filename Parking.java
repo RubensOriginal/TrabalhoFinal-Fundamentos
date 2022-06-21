@@ -143,33 +143,15 @@ public class Parking {
     }
 
     public String firstFreeSpot() {
-        boolean freeVacancy = false;
-        ParkingSpot spot = parkingSpot[0][0];
-
-        int column = 0;
-        int line = 0;
-
-        while (!freeVacancy && (column <= 9 && line <= 10)) {
-            spot = parkingSpot[column][line];
-            
-            if (spot.getVacancy()) {
-                freeVacancy = true;
-                takeAVacancy(spot);
-            }
-
-            if ((column < 8 && line == 7) || (column >= 8 && line == 10)) {
-                column++;
-                line = 0;
-            } else {
-                line++;
-            }
-        }
         
-        if (freeVacancy) {
-            return spot.getSpotName();
-        } else {
+        ParkingSpot spot = getFirstFreeParkingSpot();
+        
+        if (spot.getSpotName().equals("00")) {
             return "PARKING_FULL";
+        } else {
+            takeAVacancy(spot);
         }
+        return spot.getSpotName();
     }
 }
     

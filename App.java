@@ -66,7 +66,7 @@ public class App {
                     if (spot.equals("PARKING_FULL")) {
                         System.out.println("O estacionamento está cheio. Primeiro, libere uma vaga para que seja possível achar uma vaga livre.");
                     } else {
-                        System.out.printf("A vaga %s é a primeira vaga livre no estacionamento.\n", spot);
+                        System.out.printf("Parabens! A vaga %s está alocada para voce.\n", spot);
                     }
 
                     break;
