@@ -122,7 +122,7 @@ public class Parking {
     public void takeAVacancy(ParkingSpot spot) {
 
         if(!spot.getVacancy()) {
-            System.out.printf("Erro, a vaga %s está ocupada, por favor escolha outra de sua preferência.", spot);
+            System.out.printf("Erro, a vaga %s está ocupada.\n", spot.getSpotName());
         } else{
             System.out.println("Por favor digite as informações abaixo para que possamos colocar seus dados na vaga selecionada");
             
@@ -136,12 +136,14 @@ public class Parking {
             String carColour = in.nextLine().trim();
 
             spot.takeParkingSpot(driverName, carPlate, carColour);
+            System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot.getSpotName());
         }
     }
 
     public String releaseAVacancy(String spot)
     {
         ParkingSpot requestedSpot = getSpotByName(spot);
+        requestedSpot.setVacancy(true);
         requestedSpot.setCarDriver("");
         requestedSpot.setCarPlate("");
         requestedSpot.setCarColour("");
