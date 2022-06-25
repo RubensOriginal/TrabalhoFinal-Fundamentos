@@ -117,7 +117,8 @@ public class Parking {
         }
         return new ParkingSpot("00");
     }
-
+    
+    // Print a Map Showing Status of Each ParkingSpot
     public void getParkingMap(){
         System.out.println("   A B C D E F G H I J ");
         
