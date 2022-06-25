@@ -30,7 +30,9 @@ public class App {
             //Fazer metodos para cada CASE.
             switch (option) {
                 case "1":
-                    
+                    System.out.println("Mapa de Vagas Livres e Ocupadas:");
+                    parking.getParkingMap();
+                    System.out.print("\nLegenda:\nL - Livre\nO - Ocupada\n");
                     break;
                 case "2":
                     do {
