@@ -118,6 +118,26 @@ public class Parking {
         return new ParkingSpot("00");
     }
 
+    public void getParkingMap(){
+        System.out.println("   A B C D E F G H I J ");
+        
+        for (int i = 0; i < 11; i++) {
+            System.out.printf("%02d ", i + 1);
+            for (int j = 0; j < 10; j++) {
+                if (i < parkingSpot[j].length) {
+                    if(parkingSpot[j][i].getVacancy()) {
+                        System.out.print("L ");
+                    } else {
+                        System.out.print("O ");
+                    }
+                } else {
+                    System.out.print("  ");
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+    
     
     public void takeAVacancy(ParkingSpot spot) {
 
