@@ -139,6 +139,23 @@ public class Parking {
         }
     }
     
+    public StatisticData getStatisticData() {
+        int freeSpots = 0;
+        int occupitedSpots = 0;
+        
+        for (int i = 0; i < parkingSpot.length; i++) {
+            for (int j = 0; j < parkingSpot[i].length; j++) {
+                if (parkingSpot[i][j].getVacancy()) {
+                    freeSpots++;
+                } else {
+                    occupitedSpots++;
+                }
+                
+            }
+        }
+        return new StatisticData(freeSpots, occupitedSpots);
+    }
+    
     
     public void takeAVacancy(ParkingSpot spot) {
 

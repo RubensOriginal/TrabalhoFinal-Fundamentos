@@ -64,7 +64,10 @@ public class App {
 
                     break;
                 case "5":
-
+                    StatisticData statistics = parking.getStatisticData();
+                    System.out.println("Dados estatisticos do estacionamento:");
+                    System.out.printf("Vagas livres: %d / %.1f%%\n", statistics.getNumberFreeSpots(), statistics.getPercentageFreeSpots());
+                    System.out.printf("Vagas ocupadas: %d / %.1f%%\n", statistics.getNumberOccupiedSpots(), statistics.getPercentageOccupiedSpots());
                     break;
                 case "6":
 
