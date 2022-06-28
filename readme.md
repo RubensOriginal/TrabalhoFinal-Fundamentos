@@ -98,12 +98,12 @@ Para executar o projeto, execute os seguintes comandos:
 
 - [x] Base do Projeto
 - [x] Ocupador de Vagas
-- [ ] Visualizador de Vagas
-- [ ] Função de Ocupar Vagas
-- [ ] Liberar uma Vaga
-- [ ] Encontrar a Primeira Vaga Livre
-- [ ] Exibir Estatísticas do Estacionamento
-- [ ] Localizar Veículo por Cor
+- [x] Visualizador de Vagas
+- [x] Função de Ocupar Vagas
+- [x] Liberar uma Vaga
+- [x] Encontrar a Primeira Vaga Livre
+- [x] Exibir Estatísticas do Estacionamento
+- [x] Localizar Veículo por Cor
 
 Para ver futuras implementações não adicionadas aqui, verifique as [Issues abertas](https://github.com/RubensOriginal/TrabalhoFinalFundamentos/issues) no Github.
 
