@@ -70,7 +70,9 @@ public class App {
                     System.out.printf("Vagas ocupadas: %d / %.1f%%\n", statistics.getNumberOccupiedSpots(), statistics.getPercentageOccupiedSpots());
                     break;
                 case "6":
-
+                    System.out.println("Escolha uma cor do carro");
+                    String carColour = in.nextLine();
+                    parking.spotByCarColour(carColour);
                     break;
                 case "0":
                     System.out.println("Obrigado pela preferência, tenha um bom dia! ");

@@ -93,6 +93,22 @@ public class Parking {
         return new ParkingSpot("00");
     }
     
+    // Find the parkingSpot using carColour provided in method
+    public ParkingSpot[] getSpotByCarColour(String carColour) {
+        ParkingSpot[] vet = new ParkingSpot[100];
+        int cont = 0;
+        for (int i = 0; i < parkingSpot.length; i++) {
+            for (int j = 0; j < parkingSpot[i].length; j++) {
+                if (parkingSpot[i][j].getCarColour().equalsIgnoreCase(carColour)) {
+                    vet[cont] = parkingSpot[i][j];
+                    cont++;
+                }
+            }
+        }
+            
+        return vet;
+    }
+    
     // Find the parkingSpot using driverName provided in method
     public ParkingSpot getSpotByDriverName(String driverName) {
         for (int i = 0; i < parkingSpot.length; i++) {
@@ -199,6 +215,26 @@ public class Parking {
             takeAVacancy(spot);
         }
         return spot.getSpotName();
+    }
+    
+    public void spotByCarColour(String carColour)
+    {
+        ParkingSpot[] spot = getSpotByCarColour(carColour);
+        
+        if(spot.length == 0)
+        {
+           System.out.println("this doesn't exist colour");
+        }
+        else{
+            for(int i = 0; i < spot.length; i++)
+            {
+                if(spot[i]==null)
+                   break;
+                else
+                   System.out.println(spot[i].getCarPlate()+" "+spot[i].getCarDriver()+" "+spot[i].getSpotName());
+            }
+        }
+        
     }
 }
     
