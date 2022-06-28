@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Parking
+comment1.params=
+comment1.target=Parking()
+comment10.params=
+comment10.target=java.lang.String\ firstFreeSpot()
+comment11.params=carColour
+comment11.target=void\ spotByCarColour(java.lang.String)
+comment2.params=
+comment2.target=void\ fillParking()
+comment3.params=spotName
+comment3.target=ParkingSpot\ getSpotByName(java.lang.String)
+comment4.params=carPlate
+comment4.target=ParkingSpot\ getSpotByPlate(java.lang.String)
+comment5.params=carColour
+comment5.target=ParkingSpot[]\ getSpotByCarColour(java.lang.String)
+comment6.params=driverName
+comment6.target=ParkingSpot\ getSpotByDriverName(java.lang.String)
+comment7.params=
+comment7.target=ParkingSpot\ getFirstFreeParkingSpot()
+comment8.params=spot
+comment8.target=void\ takeAVacancy(ParkingSpot)
+comment9.params=spot
+comment9.target=java.lang.String\ releaseAVacancy(java.lang.String)
+numComments=12
