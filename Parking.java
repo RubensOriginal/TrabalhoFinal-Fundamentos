@@ -1,5 +1,7 @@
-import java.util.Random;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
+
 public class Parking {
 
     private ParkingSpot[][] parkingSpot;
@@ -93,20 +95,19 @@ public class Parking {
         return new ParkingSpot("00");
     }
     
-    // Find the parkingSpot using carColour provided in method
-    public ParkingSpot[] getSpotByCarColour(String carColour) {
-        ParkingSpot[] vet = new ParkingSpot[100];
-        int cont = 0;
+    // Find the parkingSpots using carColour provided in method
+    public ArrayList<ParkingSpot> getSpotsByCarColour(String carColour) {
+        ArrayList<ParkingSpot> parkingSpots = new ArrayList<>();
+        
         for (int i = 0; i < parkingSpot.length; i++) {
             for (int j = 0; j < parkingSpot[i].length; j++) {
                 if (parkingSpot[i][j].getCarColour().equalsIgnoreCase(carColour)) {
-                    vet[cont] = parkingSpot[i][j];
-                    cont++;
+                    parkingSpots.add(parkingSpot[i][j]);
                 }
             }
         }
             
-        return vet;
+        return parkingSpots;
     }
     
     // Find the parkingSpot using driverName provided in method
@@ -217,21 +218,15 @@ public class Parking {
         return spot.getSpotName();
     }
     
-    public void spotByCarColour(String carColour)
-    {
-        ParkingSpot[] spot = getSpotByCarColour(carColour);
+    public void spotByCarColour(String carColour) {
+        ArrayList<ParkingSpot> spots = getSpotsByCarColour(carColour);
         
-        if(spot.length == 0)
-        {
-           System.out.println("this doesn't exist colour");
-        }
-        else{
-            for(int i = 0; i < spot.length; i++)
-            {
-                if(spot[i]==null)
-                   break;
-                else
-                   System.out.println(spot[i].getCarPlate()+" "+spot[i].getCarDriver()+" "+spot[i].getSpotName());
+        if(spots.size() == 0) {
+           System.out.println("Essa cor nao existe.");
+        } else {
+            for(int i = 0; i < spots.size(); i++) {
+                ParkingSpot spot = spots.get(i);
+                System.out.println(spot.getCarPlate()+" "+spot.getCarDriver()+" "+spot.getSpotName());
             }
         }
         
