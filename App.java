@@ -9,6 +9,9 @@ public class App {
     public static void consoleController() {
         String option = "0";
         String spot = "";
+        
+        System.out.println("Seja bem-vindo ao gerenciador de vagas de estacionamento.");
+        
         do {
             System.out.println("--------------------------------------");
             System.out.println("Escolha uma das opções a seguir:\n");
@@ -39,7 +42,12 @@ public class App {
                         System.out.print("Digite a vaga que você deseja ocupar: ");
                         spot = in.nextLine().toUpperCase().replace(" ","");
                         
-                        if (spot.length() == 2 || spot.length() == 3) {
+                        if (
+                            (spot.length() == 2 || spot.length() == 3) &&
+                            (spot.charAt(0) >= 'A' && spot.charAt(0) <= 'Z') &&
+                            (spot.charAt(1) >= '0' && spot.charAt(1) <= '9') &&
+                            (spot.charAt(2) >= '0' && spot.charAt(2) <= '9')
+                            ) {
                             parking.takeAVacancy(parking.getSpotByName(spot));
                         } else {
                             hasAnError = true;
@@ -87,11 +95,7 @@ public class App {
     public static void main(String[] args) {
         parking = new Parking();
         parking.fillParking();
-        
-        System.out.println("Seja bem-vindo ao gerenciador de vagas de estacionamento.");
 
         consoleController();
-
-        System.out.print("Finished");
     }
 }

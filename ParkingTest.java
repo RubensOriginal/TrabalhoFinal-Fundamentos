@@ -141,5 +141,20 @@ public class ParkingTest
         assertEquals(spotFoundUsingDriverName, spot);
         
     }
+    
+    @Test
+    public void checkingStatisticData() {
+        Parking parking = new Parking();
+        parking.fillParking();
+        
+        StatisticData data = parking.getStatisticData();
+        
+        StatisticData generatedData = new StatisticData(26, 63);
+        
+        assertEquals(data.getNumberFreeSpots(), generatedData.getNumberFreeSpots());
+        assertEquals(data.getNumberOccupiedSpots(), generatedData.getNumberOccupiedSpots());
+        assertEquals(data.getPercentageFreeSpots(), generatedData.getPercentageFreeSpots());
+        assertEquals(data.getPercentageOccupiedSpots(), generatedData.getPercentageOccupiedSpots());
+    }
 }
 

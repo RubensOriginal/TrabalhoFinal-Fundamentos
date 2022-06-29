@@ -7,7 +7,7 @@ public class Parking {
     private ParkingSpot[][] parkingSpot;
 
     private int numberOfParkingSpot = 0;
-    private Scanner in = new Scanner (System.in);
+    // private Scanner in = new Scanner (System.in);
 
     // Create Parking
     public Parking() {
@@ -177,18 +177,18 @@ public class Parking {
     public void takeAVacancy(ParkingSpot spot) {
 
         if(!spot.getVacancy()) {
-            System.out.printf("Erro, a vaga %s está ocupada.\n", spot.getSpotName());
+            System.out.printf("Ocorreu um erro. A vaga %s está ocupada.\n", spot.getSpotName());
         } else{
             System.out.println("Por favor digite as informações abaixo para que possamos colocar seus dados na vaga selecionada");
             
             System.out.println("1- Por favor, digitar seu nome completo (Ex.: Erik Adamastor Leoncio):");
-            String driverName = in.nextLine().trim();
+            String driverName = App.in.nextLine().trim();
             
             System.out.println("2- Agora, digite a placa do seu carro (Ex.: IOS-2456):");
-            String carPlate = in.nextLine().trim().toUpperCase();
+            String carPlate = App.in.nextLine().trim().toUpperCase();
 
             System.out.println("3- Por ultimo, mas nao menos importante, digite a cor do seu carro:");
-            String carColour = in.nextLine().trim();
+            String carColour = App.in.nextLine().trim();
 
             spot.takeParkingSpot(driverName, carColour, carPlate);
             System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot.getSpotName());
