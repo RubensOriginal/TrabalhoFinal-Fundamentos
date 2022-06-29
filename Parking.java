@@ -190,7 +190,7 @@ public class Parking {
             System.out.println("3- Por ultimo, mas nao menos importante, digite a cor do seu carro:");
             String carColour = in.nextLine().trim();
 
-            spot.takeParkingSpot(driverName, carPlate, carColour);
+            spot.takeParkingSpot(driverName, carColour, carPlate);
             System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot.getSpotName());
         }
     }
