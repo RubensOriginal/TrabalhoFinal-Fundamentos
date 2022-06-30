@@ -25,7 +25,11 @@ public class ParkingSpot
     }
     
     public void setCarPlate(String plate){
-        this.carPlate = plate;
+        if (plate.length() == 7) {
+            this.carPlate = plate.substring(0, 3) + "-" + plate.substring(3, 7);
+        } else {
+            this.carPlate = plate;
+        }
     }
     
     public String getCarPlate() {
@@ -48,7 +52,7 @@ public class ParkingSpot
         return carDriver;
     }
     
-    public ParkingSpot takeParkingSpot (String carDriver, String carColour, String carPlate) {
+    public ParkingSpot takeSpot(String carDriver, String carColour, String carPlate) {
         if (this.getVacancy()) {
             setCarColour(carColour);
             setCarDriver(carDriver);
@@ -58,7 +62,7 @@ public class ParkingSpot
         return this;
     }
     
-    public ParkingSpot releaseParkingSpot () {
+    public ParkingSpot releaseSpot() {
         if (!this.getVacancy()) {
             setCarColour("");
             setCarDriver("");

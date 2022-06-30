@@ -6,6 +6,7 @@ public class App {
 
     public static final Scanner in = new Scanner(System.in);
 
+    // Method which control all inputs from main menu
     public static void consoleController() {
         String option = "0";
         String spot = "";
@@ -30,25 +31,33 @@ public class App {
             
             boolean hasAnError = false;
             
-            //Fazer metodos para cada CASE.
             switch (option) {
-                case "1":
+                case "1": 
+                    // Present to user a Map showing free and occupied spots
                     System.out.println("Mapa de Vagas Livres e Ocupadas:");
                     parking.getParkingMap();
                     System.out.print("\nLegenda:\nL - Livre\nO - Ocupada\n");
                     break;
                 case "2":
+                    // Take a spot chosen by user
                     do {
                         System.out.print("Digite a vaga que você deseja ocupar: ");
                         spot = in.nextLine().toUpperCase().replace(" ","");
                         
-                        if (
-                            (spot.length() == 2 || spot.length() == 3) &&
-                            (spot.charAt(0) >= 'A' && spot.charAt(0) <= 'Z') &&
-                            (spot.charAt(1) >= '0' && spot.charAt(1) <= '9') &&
-                            (spot.charAt(2) >= '0' && spot.charAt(2) <= '9')
-                            ) {
-                            parking.takeAVacancy(parking.getSpotByName(spot));
+                        if (spot.length() == 2) {
+                            if ((spot.charAt(0) >= 'A' && spot.charAt(0) <= 'Z') && (spot.charAt(1) >= '0' && spot.charAt(1) <= '9')) {
+                                parking.takeSpot(parking.getSpotByName(spot));
+                            } else {
+                                hasAnError = true;
+                                System.out.printf("Ocorreu um erro. A vaga %s não respeita o padrão letra número. Ex: A1.\n", spot);
+                            }
+                        } else if (spot.length() == 3) {
+                            if ((spot.charAt(0) >= 'A' && spot.charAt(0) <= 'Z') && (spot.charAt(1) >= '0' && spot.charAt(1) <= '9') && (spot.charAt(2) >= '0' && spot.charAt(2) <= '9')) {
+                                parking.takeSpot(parking.getSpotByName(spot));
+                            } else {
+                                hasAnError = true;
+                                System.out.printf("Ocorreu um erro. A vaga %s não respeita o padrão letra número. Ex: A1.\n", spot);
+                            }
                         } else {
                             hasAnError = true;
                             System.out.printf("Ocorreu um erro. A vaga %s não respeita o padrão letra número. Ex: A1.\n", spot);
@@ -56,36 +65,54 @@ public class App {
                     } while (hasAnError);
                     break;
                 case "3":
-                    System.out.print("Digite a vaga que você deseja liberar: ");
-                    spot = in.nextLine().toUpperCase().replace(" ","");
+                    // Release this spot
+                    System.out.print("Digite a vaga, a placa do carro ou o motorista do veículo que você deseja liberar: ");
+                    String externalData = in.nextLine().toUpperCase().trim();
 
-                    parking.releaseAVacancy(spot);
-                    System.out.printf("A vaga %s foi liberada com sucesso!\n ", spot);
+                    String releasedSpot = parking.releaseSpot(externalData);
+                    if (releasedSpot.equals("00")) {
+                        System.out.printf("Nao conseguimos encontrar nenhuma vaga utilizando %s como parametro de busca", externalData);
+                    } else {
+                        System.out.printf("A vaga %s foi liberada com sucesso!\n ", releasedSpot);
+                    }
                     break;
                 case "4":
-                    spot = parking.firstFreeSpot();
-                    if (spot.equals("PARKING_FULL")) {
-                        System.out.println("O estacionamento está cheio. Primeiro, libere uma vaga para que seja possível achar uma vaga livre.");
+                    // Find the first free spot and ask if user would like to occupy this spot 
+                    ParkingSpot freeParkingSpot = parking.getFirstFreeParkingSpot();
+        
+                    if (freeParkingSpot.getSpotName().equals("00")) {
+                        System.out.println("O estacionamento esta cheio. Primeiro, libere uma vaga para que seja possivel achar uma vaga livre.");
                     } else {
-                        System.out.printf("Parabens! A vaga %s está alocada para voce.\n", spot);
+                        System.out.printf("A vaga %s foi encontrada. Voce deseja ocupa-la ([S]im / [N]ao)? ", freeParkingSpot.getSpotName());
+                        String confirmation = in.nextLine();
+                        if (confirmation.equalsIgnoreCase("S") || confirmation.equalsIgnoreCase("Sim")) {
+                            parking.takeSpot(freeParkingSpot);
+                        } else if (confirmation.equalsIgnoreCase("N") || confirmation.equalsIgnoreCase("Nao")) {
+                            System.out.println("Ok. Fica para a proxima.");
+                        } else {
+                            System.out.println("Sua resposta nao parece com nenhuma das anteriormente apresentadas. Sendo assim, estamos voltando ao menu principal.");
+                        }
                     }
-
                     break;
                 case "5":
+                    // Present some data related to Parking to user
                     StatisticData statistics = parking.getStatisticData();
                     System.out.println("Dados estatisticos do estacionamento:");
-                    System.out.printf("Vagas livres: %d / %.1f%%\n", statistics.getNumberFreeSpots(), statistics.getPercentageFreeSpots());
                     System.out.printf("Vagas ocupadas: %d / %.1f%%\n", statistics.getNumberOccupiedSpots(), statistics.getPercentageOccupiedSpots());
+                    System.out.printf("Vagas livres: %d / %.1f%%\n", statistics.getNumberFreeSpots(), statistics.getPercentageFreeSpots());
                     break;
                 case "6":
-                    System.out.println("Escolha uma cor do carro");
+                    // Print all cars with a determined colour chosen by user
+                    System.out.print("Escolha a cor do carro que voce deseja localizar: ");
                     String carColour = in.nextLine();
                     parking.spotByCarColour(carColour);
                     break;
                 case "0":
+                    // Finish the session
                     System.out.println("Obrigado pela preferência, tenha um bom dia! ");
                     break;
                 default:
+                    // Anything else
                     System.out.println("Ocorreu um erro. A opção escolhida não existe!");
                     break;
             }

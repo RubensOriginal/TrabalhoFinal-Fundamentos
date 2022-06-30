@@ -7,7 +7,7 @@
   <h3 align="center">Projeto Final - Fundamentos da Programação</h3>
 
   <p align="center">
-	Projeto que tem como objetivo administrar um estacionamento.
+    Projeto que tem como objetivo administrar um estacionamento.
     <br />
     <a href="https://github.com/RubensOriginal/TrabalhoFinalFundamentos/issues">Reporte uma Falha</a>
     ·
@@ -84,6 +84,8 @@ Para executar o projeto, execute os seguintes comandos:
    javac App.java
    javac DataManager.java
    javac ParkingSpot.java
+   javac Parking.java
+   javac StatisticData.j
    ```
 4. Execute o App
    ```sh

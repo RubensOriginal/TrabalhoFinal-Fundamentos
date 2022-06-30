@@ -5,7 +5,7 @@ public class DataManager
     private final static int LETTERS = 26;
     private final static Random random = new Random();
     
-    
+    // Generate a Car Plate
     public static String carPlateGenerator() {
                
         char firstChar = (char)(random.nextInt(LETTERS) + 'A');
@@ -20,6 +20,7 @@ public class DataManager
         return "" + firstChar + secondChar + thirdChar + "-" + firstNumber + secondNumber + thirdNumber + forthNumber; // String Builder
     }
     
+    // Generate a Car Colour
     public static String carColourGenerator() {
            
         String[] carColours = {"Branco", "Preto", "Prata", "Cinza", "Azul", "Vermelho", "Laranja", "Marrom", "Dourado", "Creme"};
@@ -27,6 +28,7 @@ public class DataManager
         return carColours[random.nextInt(carColours.length)];
     }
     
+    // Generate a Driver
     public static String carDriverGenerator() {
         
         String[] firstName = {

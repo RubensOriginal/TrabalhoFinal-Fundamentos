@@ -66,7 +66,7 @@ public class Parking {
         }
     }
     
-    // Find the parkingSpot using chars from spotName
+    // Find the spot using chars from spotName
     public ParkingSpot getSpotByName(String spotName) {
 
         int column = (int)(spotName.charAt(0)) - 'A';
@@ -75,15 +75,21 @@ public class Parking {
         if (spotName.length() == 2) {
             line = ((int) spotName.charAt(1)) - '1';
         } else {
-            line = ((int)spotName.charAt(1)) * 10 + ((int) spotName.charAt(2)) - 1 ;
+            line = ((int)spotName.charAt(1) - '0') * 10 + ((int) spotName.charAt(2) - '1') ;
         }
-        
 
         return parkingSpot[column][line];
     }
     
-    // Find the parkingSpot using carPlate provided in method
-    public ParkingSpot getSpotByPlate(String carPlate) {
+    // Find the spot using carPlate provided in method
+    public ParkingSpot getSpotByPlate(String plate) {
+        String carPlate = "";
+        if (plate.length() == 7) {
+            carPlate = plate.substring(0, 3) + "-" + plate.substring(3, 7);
+        } else {
+            carPlate = plate;
+        }
+        
         for (int i = 0; i < parkingSpot.length; i++) {
             for (int j = 0; j < parkingSpot[i].length; j++) {
                 if (parkingSpot[i][j].getCarPlate().equals(carPlate)) {
@@ -95,7 +101,7 @@ public class Parking {
         return new ParkingSpot("00");
     }
     
-    // Find the parkingSpots using carColour provided in method
+    // Find the spot using carColour provided in method
     public ArrayList<ParkingSpot> getSpotsByCarColour(String carColour) {
         ArrayList<ParkingSpot> parkingSpots = new ArrayList<>();
         
@@ -110,11 +116,11 @@ public class Parking {
         return parkingSpots;
     }
     
-    // Find the parkingSpot using driverName provided in method
+    // Find the spot using driverName provided in method
     public ParkingSpot getSpotByDriverName(String driverName) {
         for (int i = 0; i < parkingSpot.length; i++) {
             for (int j = 0; j < parkingSpot[i].length; j++) {
-                if (parkingSpot[i][j].getCarDriver().equals(driverName)) {
+                if (parkingSpot[i][j].getCarDriver().equalsIgnoreCase(driverName)) {
                     return parkingSpot[i][j];            
                 }
             }
@@ -123,7 +129,7 @@ public class Parking {
         return new ParkingSpot("00");
     }
     
-    // Find first free 
+    // Find first free spot
     public ParkingSpot getFirstFreeParkingSpot() {
         for (int i = 0; i < parkingSpot.length; i++) {
             for (int j = 0; j < parkingSpot[i].length; j++) {
@@ -135,7 +141,7 @@ public class Parking {
         return new ParkingSpot("00");
     }
     
-    // Print a Map Showing Status of Each ParkingSpot
+    // Print a Map Showing Status of Each spot in Parking
     public void getParkingMap(){
         System.out.println("   A B C D E F G H I J ");
         
@@ -156,6 +162,7 @@ public class Parking {
         }
     }
     
+    // Generate StatisticData to App
     public StatisticData getStatisticData() {
         int freeSpots = 0;
         int occupitedSpots = 0;
@@ -173,51 +180,59 @@ public class Parking {
         return new StatisticData(freeSpots, occupitedSpots);
     }
     
-    
-    public void takeAVacancy(ParkingSpot spot) {
+    // Method used by App to take a spot
+    public void takeSpot(ParkingSpot spot) {
 
         if(!spot.getVacancy()) {
-            System.out.printf("Ocorreu um erro. A vaga %s está ocupada.\n", spot.getSpotName());
+            System.out.printf("Ocorreu um erro. A vaga %s já está ocupada.\n", spot.getSpotName());
         } else{
             System.out.println("Por favor digite as informações abaixo para que possamos colocar seus dados na vaga selecionada");
             
-            System.out.println("1- Por favor, digitar seu nome completo (Ex.: Erik Adamastor Leoncio):");
+            System.out.print("1- Por favor, digitar seu nome completo (Ex.: Erik Adamastor Leoncio): ");
             String driverName = App.in.nextLine().trim();
             
-            System.out.println("2- Agora, digite a placa do seu carro (Ex.: IOS-2456):");
+            System.out.print("2- Agora, digite a placa do seu carro (Ex.: IOS-2456): ");
             String carPlate = App.in.nextLine().trim().toUpperCase();
 
-            System.out.println("3- Por ultimo, mas nao menos importante, digite a cor do seu carro:");
+            System.out.print("3- Por ultimo, mas nao menos importante, digite a cor do seu carro: ");
             String carColour = App.in.nextLine().trim();
 
-            spot.takeParkingSpot(driverName, carColour, carPlate);
+            spot.takeSpot(driverName, carColour, carPlate);
             System.out.printf("A vaga %s foi ocupada com sucesso!\n", spot.getSpotName());
         }
     }
 
-    public String releaseAVacancy(String spot)
+    // Method used by App to release a spot
+    public String releaseSpot(String data)
     {
-        ParkingSpot requestedSpot = getSpotByName(spot);
-        requestedSpot.setVacancy(true);
-        requestedSpot.setCarDriver("");
-        requestedSpot.setCarPlate("");
-        requestedSpot.setCarColour("");
+        ParkingSpot spot;
         
-        return spot;
-    }
-
-    public String firstFreeSpot() {
-        
-        ParkingSpot spot = getFirstFreeParkingSpot();
-        
-        if (spot.getSpotName().equals("00")) {
-            return "PARKING_FULL";
-        } else {
-            takeAVacancy(spot);
+        switch(data.length()) {
+            case 2:
+            case 3:
+                spot = getSpotByName(data);
+                if (spot.getSpotName() != "00")
+                    break;
+            case 7:
+            case 8:
+                spot = getSpotByPlate(data);
+                if (spot.getSpotName() != "00")
+                    break;
+            default:
+                spot = getSpotByDriverName(data);
+                if (spot.getSpotName() != "00")
+                    break;
         }
-        return spot.getSpotName();
+        
+        if (spot.getSpotName() != "00") {
+            spot.releaseSpot();
+            return spot.getSpotName();
+        } else {
+            return "00";
+        }
     }
     
+    // Method used by App to print all spots a determined colour
     public void spotByCarColour(String carColour) {
         ArrayList<ParkingSpot> spots = getSpotsByCarColour(carColour);
         
