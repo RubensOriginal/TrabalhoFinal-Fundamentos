@@ -85,7 +85,7 @@ Para executar o projeto, execute os seguintes comandos:
    javac DataManager.java
    javac ParkingSpot.java
    javac Parking.java
-   javac StatisticData.j
+   javac StatisticData.java
    ```
 4. Execute o App
    ```sh
