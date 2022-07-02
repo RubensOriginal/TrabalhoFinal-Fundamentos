@@ -98,8 +98,8 @@ public class App {
                     // Present some data related to Parking to user
                     StatisticData statistics = parking.getStatisticData();
                     System.out.println("Dados estatisticos do estacionamento:");
-                    System.out.printf("Vagas ocupadas: %d / %.1f%%\n", statistics.getNumberOccupiedSpots(), statistics.getPercentageOccupiedSpots());
-                    System.out.printf("Vagas livres: %d / %.1f%%\n", statistics.getNumberFreeSpots(), statistics.getPercentageFreeSpots());
+                    System.out.printf("Vagas ocupadas: %d de %d (%.1f%%)\n", statistics.getNumberOccupiedSpots(), statistics.getNumberTotalSpots(), statistics.getPercentageOccupiedSpots());
+                    System.out.printf("Vagas livres: %d de %d (%.1f%%)\n", statistics.getNumberFreeSpots(), statistics.getNumberTotalSpots(), statistics.getPercentageFreeSpots());
                     break;
                 case "6":
                     // Print all cars with a determined colour chosen by user
