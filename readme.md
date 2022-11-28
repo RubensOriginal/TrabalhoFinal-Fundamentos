@@ -49,7 +49,7 @@ Entre as funcionalidades do sistema estão: Gerar um mapa mostrando o estado da 
 
 Observação: Por uma solicitação do cliente, as vagas são iniciadas com 70% da ocupação, sendo as informações geradas de forma aleatória.
 
-### Contruido Com
+### Construido Com
 
 Esse projeto foi construido utilizando o Java 11. 
 Como IDE oficial do projeto, foi utilizado o BlueJ.
